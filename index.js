@@ -8,24 +8,20 @@ require("dotenv").config();
 let count = 0;
 //create end point
 app.use((req, res, next) => {
-  console.log("received-req");
+  console.log("Received Request from CLient");
   console.log(count++);
   next();
 });
 app.use(cors());
-app.post("/authenticate", (req, res) => {
-  console.log(req.params);
-  console.log(req);
-});
 app.get("/.well-known/com.apple.remotemanagement", (request, response) => {
   const json = {
     Servers: [
       {
         Version: "mdm-byod",
         BaseURL:
-          "https://10.53.76.135:9383/api/mdm/accountdrivenuserenrollment?templateToken=a27001999bd1f012cf3e6b67f3b3edfc&encapiKey=cc63d1eb"
-      }
-    ]
+          "https://10.53.76.135:9383/api/mdm/accountdrivenuserenrollment?templateToken=a27001999bd1f012cf3e6b67f3b3edfc&encapiKey=cc63d1eb",
+      },
+    ],
   };
   console.log(json);
   response.json(json);
